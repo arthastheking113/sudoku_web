@@ -239,7 +239,7 @@ Sudoku.prototype.drawBoard = function(){
     $('<div></div>').addClass('num note').text('?').appendTo(sudoku_console);
     
     //draw gameover
-    var sudoku_gameover = $('<div class="gameover_container"><div class="gameover">Congratulation! <button class="restart">Play Again</button></div></div>');
+    var sudoku_gameover = $('<div class="gameover_container"><div class="gameover">Congratulation! <button type="button" onclick="restart()" href="#" class="restart">Play Again</button></div></div>');
     
     //add all to sudoku container
     sudoku_console_cotainer.appendTo('#'+ this.id).hide();
@@ -317,7 +317,7 @@ Sudoku.prototype.solve = function(){
     $('<div></div>').addClass('num note').text('?').appendTo(sudoku_console);
     
     //draw gameover
-    var sudoku_gameover = $('<div class="gameover_container"><div class="gameover">Congratulation! <button class="restart">Play Again</button></div></div>');
+    var sudoku_gameover = $('<div class="gameover_container"><div class="gameover">Congratulation! <button type="button" onclick="restart()" class="restart">Play Again</button></div></div>');
     
     //add all to sudoku container
     sudoku_console_cotainer.appendTo('#'+ this.id).hide();
@@ -327,6 +327,7 @@ Sudoku.prototype.solve = function(){
   
     //adjust size
     this.resizeWindow();
+    this.gameOver();
 };
 
 
@@ -378,6 +379,7 @@ Sudoku.prototype.resizeWindow = function(){
     
     console.log('screen', screen);    
     console.timeEnd("resizeWindow");
+    
 };
 
 /**
@@ -649,23 +651,60 @@ $(function() {
     });
   
      //restart game
-    $('#'+ game.id +' .restart').on('click', function(){
-        game.init().run();
-    });
-  
+ 
     $('#sudoku_menu .restart').on('click', function(){
         game.init().run();
  
         $('#sudoku_menu').removeClass('open-sidebar');
     });
-    $('#'+ game.id +' .solve').on('click', function(){
-        game.solve();
-    });
+  
   
     $('#sudoku_menu .solve').on('click', function(){
         game.solve();
         
         
+        
     });
     console.timeEnd("loading time");
 });
+function restart(){
+    $(function() {
+        console.time("loading time");    
+        
+        //init        
+        $('head').append('<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />');
+        
+        //game  
+        var game = new Sudoku({ 
+                        id: 'sudoku_container',                    
+                        fixCellsNr: 30,
+                        highlight : 1,
+                        displayTitle : 1,
+                        //displaySolution: 1,
+                        //displaySolutionOnly: 1
+                   });
+        
+        game.run();
+       
+        $('#sidebar-toggle').on('click', function(e){
+          $('#sudoku_menu').toggleClass("open-sidebar");
+        });
+      
+         //restart game
+     
+        $('#sudoku_menu .restart').on('click', function(){
+            game.init().run();
+     
+            $('#sudoku_menu').removeClass('open-sidebar');
+        });
+      
+      
+        $('#sudoku_menu .solve').on('click', function(){
+            game.solve();
+            
+            
+            
+        });
+        console.timeEnd("loading time");
+    });
+}
