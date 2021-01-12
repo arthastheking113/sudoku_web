@@ -254,7 +254,7 @@ Sudoku.prototype.drawBoard = function(){
 
 // solve
 Sudoku.prototype.solve = function(){
-    this.board = this.board[0];
+   // this.board = this.board[0];
     this.displaySolution = 1;
     this.cellsComplete = 81;
     var index = 0,
@@ -280,8 +280,7 @@ Sudoku.prototype.solve = function(){
                             .addClass('cell')
                             .attr('x', position.x)
                             .attr('y', position.y)
-                            .attr('gr', group_position.x +''+ group_position.y)
-                            .html('<span>'+ value +'</span>' );
+                            .attr('gr', group_position.x +''+ group_position.y);
           
             if (this.displaySolution) {
                $('<span style="line-height: 39.5469px; font-family: verdana,helvetica,arial,sans-serif;">' + value_solution + '</span>').appendTo(cell);
