@@ -627,46 +627,7 @@ Sudoku.prototype.run = function(){
     });
 };
 
-//main
-$(function() {
-    console.time("loading time");    
-    
-    //init        
-    $('head').append('<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />');
-    
-    //game  
-    var game = new Sudoku({ 
-                    id: 'sudoku_container',                    
-                    fixCellsNr: 30,
-                    highlight : 1,
-                    displayTitle : 1,
-                    //displaySolution: 1,
-                    //displaySolutionOnly: 1
-               });
-    
-    game.run();
-   
-    $('#sidebar-toggle').on('click', function(e){
-      $('#sudoku_menu').toggleClass("open-sidebar");
-    });
-  
-     //restart game
- 
-    $('#sudoku_menu .restart').on('click', function(){
-        game.init().run();
- 
-        $('#sudoku_menu').removeClass('open-sidebar');
-    });
-  
-  
-    $('#sudoku_menu .solve').on('click', function(){
-        game.solve();
-        
-        
-        
-    });
-    console.timeEnd("loading time");
-});
+// restart
 function restart(){
     $(function() {
         console.time("loading time");    
@@ -708,3 +669,43 @@ function restart(){
         console.timeEnd("loading time");
     });
 }
+//main
+$(function() {
+    console.time("loading time");    
+    
+    //init        
+    $('head').append('<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes" />');
+    
+    //game  
+    var game = new Sudoku({ 
+                    id: 'sudoku_container',                    
+                    fixCellsNr: 30,
+                    highlight : 1,
+                    displayTitle : 1,
+                    //displaySolution: 1,
+                    //displaySolutionOnly: 1
+               });
+    
+    game.run();
+   
+    $('#sidebar-toggle').on('click', function(e){
+      $('#sudoku_menu').toggleClass("open-sidebar");
+    });
+  
+     //restart game
+ 
+    $('#sudoku_menu .restart').on('click', function(){
+        game.init().run();
+ 
+        $('#sudoku_menu').removeClass('open-sidebar');
+    });
+  
+  
+    $('#sudoku_menu .solve').on('click', function(){
+        game.solve();
+        
+        
+        
+    });
+    console.timeEnd("loading time");
+});
