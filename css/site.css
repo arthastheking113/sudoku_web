@@ -7,10 +7,6 @@ H1 {
     text-align:center;    
 }
 
-body {
-    font-family:verdana,helvetica,arial,sans-serif;
-    border:0px; margin:0px; padding:0px;
-}
 
 /* board */
 .sudoku_board {
